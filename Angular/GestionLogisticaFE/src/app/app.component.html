@@ -1,0 +1,136 @@
+<div class="panel panel-primary">
+  <div class="panel-heading text-center mt-4 bg-light"><h3>Prueba Gestión Logística</h3></div>
+  <div class="panel-body">
+    
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-md-3 mt-4">
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-action" (click)="crearCliente()">
+              <h5>Crear Cliente</h5>
+            </li>
+            <li class="list-group-item list-group-item-action" (click)="consultarCliente()">
+             <h5>Consultar Cliente</h5> 
+            </li>
+            <li class="list-group-item list-group-item-action" (click)="crearTipoProducto()" >
+              <h5>Crear Tipo Producto</h5>
+            </li>
+            <li class="list-group-item list-group-item-action" (click)="crearPlanEntrega()">
+              <h5>Crear Plan de Entrega</h5>
+            </li>
+          </ul>
+        </div>
+      <div class="col-md-6" ng-container *ngIf="mostrarConsultarCliente">
+        <div class="card mt-4">
+          <div class="card-body">
+            <div class="card-title">
+              <h6>Consultar Cliente</h6>
+            </div>
+            <div class="form-group">
+              <label>Documento</label>
+              <input type="text" [(ngModel)]="documentoConsulta" class="form-control">
+            </div>
+            <button (click)="obtenerCliente()" class="btn btn-primary mt-2">Consultar</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6" ng-container *ngIf="mostrarCrearCliente">
+        <div class="card mt-4">
+          <div class="card-body">
+            <div class="card-title">
+              <h6>Crear Cliente</h6>
+            </div>
+            <div class="form-group">
+              <label>Documento</label>
+              <input type="text" [(ngModel)]="dtoEnviarCliente.Documento" class="form-control">
+              <label>Nombres</label>
+              <input type="text" [(ngModel)]="dtoEnviarCliente.Nombres" class="form-control">
+              <label>Apellidos</label>
+              <input type="text" [(ngModel)]="dtoEnviarCliente.Apellidos" class="form-control">
+              <label>Dirección</label>
+              <input type="text" [(ngModel)]="dtoEnviarCliente.Direccion" class="form-control">
+              <label>Correo Electrónico</label>
+              <input type="text" [(ngModel)]="dtoEnviarCliente.CorreoElectronico" class="form-control">
+            </div>
+            <button (click)="guardarCliente()" class="btn btn-primary mt-2">Guardar</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6" ng-container *ngIf="mostrarCrearTipoProducto">
+        <div class="card mt-4">
+          <div class="card-body">
+            <div class="card-title">
+             <h6 >Crear Tipo Producto</h6> 
+            </div>
+            <div class="form-group">
+              <label>Nombre</label>
+              <input type="text" [(ngModel)]="dtoTipoProducto.Nombre" class="form-control">
+              <label>Id Logística (1: Terrestre - 2: Marítima)</label>
+              <input type="text" [(ngModel)]="dtoTipoProducto.IdLogistica" class="form-control">
+            </div>
+            <button (click)="guardarTipoProducto()" class="btn btn-primary mt-2">Guardar</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6" ng-container *ngIf="mostrarCrearPlanEntrega">
+        <div class="card mt-4">
+          <div class="card-body">
+            <div class="card-title">
+            <h6>Crear Plan Entrega</h6> 
+            </div>
+            <div class="form-group">
+              <label>Numero Guia</label>
+              <input type="text" [(ngModel)]="dtoPlanEntrega.NumeroGuia" class="form-control">
+              <label>Tipo Producto (Id de un tipo producto ya creado)</label>
+              <input type="text" [(ngModel)]="dtoPlanEntrega.TipoProducto" class="form-control">
+              <label>Cantidad Producto</label>
+              <input type="text" [(ngModel)]="dtoPlanEntrega.CantidadProducto" class="form-control">
+              <label>Fecha Registro</label>
+              <input type="datetime" disabled="disabled" [(ngModel)]="dtoPlanEntrega.FechaRegistro" class="form-control">
+              <label>Fecha Entrega</label>
+              <input type="datetime" disabled="disabled" [(ngModel)]="dtoPlanEntrega.FechaEntrega" class="form-control">
+              <label>Precio Envío</label>
+              <input type="text" [(ngModel)]="dtoPlanEntrega.PrecioEnvio" class="form-control">
+              <label>Documento Cliente (Documento de un cliente ya creado)</label>
+              <input type="text" [(ngModel)]="dtoPlanEntrega.DocumentoCliente" class="form-control">
+              <label>Placa ó Numero Flota</label>
+              <input type="text" [(ngModel)]="dtoPlanEntrega.PlacaONumFlota" class="form-control">
+              <label>Puerto ó Bodega (Nombre de un puerto ó bodega ya creado)</label>
+              <input type="text" [(ngModel)]="dtoPlanEntrega.PuertoOBodega" class="form-control">
+            </div>
+            <button class="btn btn-primary mt-2" (click)="guardarPlanEntrega()">Guardar</button>
+          </div>
+          </div>
+        </div>
+      
+      
+        <div class="col-md-6" ng-container *ngIf="mostrarResultadoCliente">
+          <div class="card mt-4">
+            <div class="card-body">
+              <div class="card-title">
+                <h5>Respuesta</h5>
+              </div>
+              {{this.resultadoCliente | json}}
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6" ng-container *ngIf="mostrarResultadoGeneral">
+          <div class="card mt-4">
+            <div class="card-body">
+              <div class="card-title">
+                <h5>Respuesta</h5>
+              </div>
+              {{respuestaServicio | json}}
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+  </div>
+</div>
+
