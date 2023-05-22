@@ -1,0 +1,2 @@
+Aclaración de almacenamiento.
+Para que se pueda almacenar una entidad Plan de Entrega se debe crear primero el cliente y un tipo de producto, los tipo productos estan clasificados en Logística Terrestre y Logística marítima. Las demás entidades como Bodega, Puerto, ciudad, descuento, tienen algunos registros de prueba creados en el script 2. Datos BD. 
